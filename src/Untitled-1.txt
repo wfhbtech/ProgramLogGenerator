@@ -1,0 +1,12 @@
+IF(AND(
+    AND({Expiration Date},{Effective Date}),
+        (IS_BEFORE({Expiration Date},{Effective Date}),
+            "❌ Expiration date is before effective date.",
+        IF({Underwriter},
+            IF(NOT(AND({Expiration Date},{Effective Date})),
+                "❌ Expiration and/or effective date is missing.",
+                "✅"
+            ),
+        )   
+    ),
+)
